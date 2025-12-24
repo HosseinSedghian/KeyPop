@@ -1,0 +1,53 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    background: #f0f8ff;
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+}
+
+.bubble {
+    opacity: 0.85;
+    border-radius: 50%;
+    position: absolute;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    pointer-events: none;
+}
+#information {
+    height: 10%;
+    width: 100%;
+    border: solid 1px pink;
+    background-color: yellowgreen;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 2rem;
+}
+#bubbles-container {
+    height: 90%;
+    width: 100%;
+    border: 1px solid black;
+    box-sizing: border-box;
+    position: relative;
+}
+#resultText {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    font-size: 10rem;
+    text-align: center;
+}
+.langBox {
+    font-size: 5rem;
+    background-color: purple;
+    color: white;
+    padding: 20px;
+    margin: 10px;
+    width: 400px;
+    text-align: center;
+    border-radius: 20px;
+    box-shadow: 1px 1px 10px black;
+}
