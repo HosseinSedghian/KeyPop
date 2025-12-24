@@ -40,6 +40,13 @@ body {
     font-size: 10rem;
     text-align: center;
 }
+#langsContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
 .langBox {
     font-size: 5rem;
     background-color: purple;
@@ -50,4 +57,25 @@ body {
     text-align: center;
     border-radius: 20px;
     box-shadow: 1px 1px 10px black;
+    cursor: pointer;
+}
+.langBox:hover {
+    background-color: rgb(211, 47, 211);
+}
+.gameLevel {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    font-size: 2rem;
+    background-color: purple;
+    color: white;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 1px 1px 10px black;
+}
+.gameLevel:hover {
+    background-color: rgb(211, 47, 211);
 }

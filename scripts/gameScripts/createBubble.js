@@ -1,8 +1,8 @@
 import {getRandomColor} from "./getRandomColor.js"
 import {getRandomBetween} from "./getRandomBetween.js"
-import {getRandomLetter} from "./getRandomLetter.js"
+import {englishGetRandomLetter, farsiGetRandomLetter} from "./getRandomLetter.js"
 
-export function createBubble(bubbleSize, container) {
+export function createBubble(bubbleSize, container, language) {
     const newBox = document.createElement("div");
     newBox.className = "bubble";
 
@@ -21,7 +21,13 @@ export function createBubble(bubbleSize, container) {
     newBox.style.display = "flex";
     newBox.style.justifyContent = "center";
     newBox.style.alignItems = "center";
-    const randomLetter = getRandomLetter();
+    let randomLetter = "";
+    if (language === "eng") {
+        randomLetter = englishGetRandomLetter();
+    }
+    if (language === "fa") {
+        randomLetter = farsiGetRandomLetter();
+    }
     newBox.textContent = randomLetter;
     newBox.style.fontSize = "2rem";
 
