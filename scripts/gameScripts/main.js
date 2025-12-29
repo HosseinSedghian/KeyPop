@@ -1,13 +1,57 @@
 import {animate} from "./animate.js"
 import {createBubble} from "./createBubble.js"
 
-const POP_DURATION_MS = 150;
+const POP_DURATION_MS = 450;
 
 function popBubble(bubble) {
-    bubble.newBox.style.transition = `transform ${POP_DURATION_MS}ms ease-out, opacity ${POP_DURATION_MS}ms ease-out`;
-    bubble.newBox.style.transform = `translate(${bubble.x}px, ${bubble.y}px) scale(1.25)`;
-    bubble.newBox.style.opacity = "0";
-    setTimeout(() => bubble.newBox.remove(), POP_DURATION_MS);
+    const bubbleEl = bubble.newBox;
+    const startTransform = `translate(${bubble.x}px, ${bubble.y}px) scale(1)`;
+    const burstTransform = `translate(${bubble.x}px, ${bubble.y}px) scale(1.25)`;
+    const exitTransform = `translate(${bubble.x}px, ${bubble.y}px) scale(1.6)`;
+    const burstGradient = "radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), rgba(255,70,70,0.85) 55%, rgba(90,0,0,0.5) 100%)";
+
+    bubbleEl.style.zIndex = "5";
+    bubbleEl.style.color = "#fff";
+    bubbleEl.style.fontWeight = "800";
+    bubbleEl.style.background = burstGradient;
+
+    bubbleEl.animate(
+        [
+            { transform: startTransform, opacity: 1 },
+            { transform: burstTransform, background: burstGradient, filter: "drop-shadow(0 0 12px rgba(255,0,0,0.75))", opacity: 0.9 },
+            { transform: exitTransform, background: burstGradient, filter: "drop-shadow(0 0 18px rgba(255,0,0,0.9))", opacity: 0 }
+        ],
+        {
+            duration: POP_DURATION_MS,
+            easing: "ease-out",
+            fill: "forwards"
+        }
+    );
+
+    const ring = document.createElement("div");
+    ring.className = "pop-ring";
+    ring.style.width = `${bubbleEl.offsetWidth}px`;
+    ring.style.height = `${bubbleEl.offsetHeight}px`;
+    ring.style.left = `${bubble.x}px`;
+    ring.style.top = `${bubble.y}px`;
+    document.getElementById("bubbles-container").appendChild(ring);
+
+    ring.animate(
+        [
+            { transform: "scale(0.8)", opacity: 0.75 },
+            { transform: "scale(1.7)", opacity: 0 }
+        ],
+        {
+            duration: POP_DURATION_MS,
+            easing: "ease-out",
+            fill: "forwards"
+        }
+    );
+
+    setTimeout(() => {
+        bubbleEl.remove();
+        ring.remove();
+    }, POP_DURATION_MS);
 }
 
 const params = new URLSearchParams(window.location.search);
